@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vosk;
-using NAudio.Wave;
+using SpeechRecognision;
 
 namespace VoiceLibTest
 {
@@ -16,12 +15,16 @@ namespace VoiceLibTest
         {
             Recognizer recognizer;
 
-            recognizer = new Recognizer("C:\\Users\\proro\\Downloads\\vosk-model-mod-ru-0.22 (1)\\vosk-model-mod-ru-0.22");
+            recognizer = new Recognizer(@"models\vosk-model-mod-ru-0.22", true,true);
+
+
             recognizer.RecognitionResultReceived += Recognizer_RecognitionResultReceived;
+            recognizer.startRecording();
 
             void Recognizer_RecognitionResultReceived(object sender, string result)
             {
                 Console.WriteLine("Распознанный текст: " + result);
+                
             }
 
             Console.ReadLine();
